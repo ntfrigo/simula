@@ -48,18 +48,21 @@ function CalcularTaxaAplicada($is_prefixado, $taxa_aa, $percent_cdi, $taxa_selic
 function CalcularIR($prazo_dias, $is_isento_ir) {
 
     if ($is_isento_ir === true) {
-        return 0;
+        $prazo_dias = 0;
     }
 
-    if ($prazo_dias <= 180) {
-        return 22.5;
-    } elseif ($prazo_dias <= 360) {
-        return 20.0;
-    } elseif ($prazo_dias <= 720) {
-        return 17.5;
-    } else {
-        return 15.0;
-    }    
+    switch (true) {
+        case $prazo_dias <= 0:
+            return 0;    
+        case $prazo_dias <= 180:
+            return 22.5;    
+        case $prazo_dias <= 360:
+            return 20.0;    
+        case $prazo_dias <= 720:
+            return 17.5;
+        default:
+            return 15.0;   
+    }
 }
 
 ?>

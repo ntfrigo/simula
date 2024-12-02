@@ -8,23 +8,19 @@ $(document).ready(function(){
   $('#Submit_Inserir').click(function(e){
     e.preventDefault();
     RotinaParaInserirTitulo();
-  });
-  
+  });  
     
-let itemId;
+  let itemId;
 
-$('#telaModalEditar').on('show.bs.modal', function (event) {
-  const button = $(event.relatedTarget);
-  itemId = button.data('id');
-  CarregaDadosEditar(itemId);
-});
+  $('#telaModalEditar').on('show.bs.modal', function (event) {
+    const button = $(event.relatedTarget);
+    itemId = button.data('id');
+    CarregaDadosEditar(itemId);
+  });
 
-$('#Submit_Editar').on('click', function () {
-  
-  RotinaParaEditarTitulo();
-  
-  //EnviarParaTela('excluir.php', '#telaModalExcluir', { form_del_idmodelo: itemId });
-});
+  $('#Submit_Editar').on('click', function () {  
+    RotinaParaEditarTitulo();  
+  });
 
 
 function CarregaDadosEditar(itemId) {    
@@ -84,23 +80,10 @@ function CarregaDadosEditar(itemId) {
 
     },
     error: function(data) {
-        //$('#resultado').html('Erro ao buscar dados.');
         return;
     }
 });
-
-
-
-
-
-
-
-
-
-  //toastElm.append(Elm);
 }
-
-
 
 
 $('#telaModalExcluir').on('show.bs.modal', function (event) {
@@ -112,18 +95,13 @@ $('#Submit_Excluir').on('click', function () {
   EnviarParaTela('excluir.php', '#telaModalExcluir', { form_del_idmodelo: itemId });
 });
 
-
-
 });
-
-
-
 
 
 
 function RotinaParaEditarTitulo(){
   const edit_idmodelo = $('#form_edit_idmodelo').val();
-  const edit_prefixado = $('#form_edit_prefixado').is(':checked') ? 'S' : 'N';
+  const edit_prefixado = $('#form_edit_prefixado').val();
   
   const edit_descricao = $('#form_edit_descricao').val().trim();
   const edit_percent_cdi = $('#form_edit_percent_cdi').val();
@@ -145,7 +123,6 @@ function RotinaParaEditarTitulo(){
       form_edit_ativo: edit_ativo    
     } );
   }
-
 }
 
 function RotinaParaInserirTitulo(){
@@ -169,8 +146,8 @@ function RotinaParaInserirTitulo(){
 
 }
 
-function RotinaPAraAtualizaTaxaSelic(){
-  const valor_taxa_selic = $('#form_edit_taxa_selic').val().trim();
+function RotinaParaAtualizaTaxaSelic(){
+  const valor_taxa_selic = $('#form_edit_taxa_selic').val();
   if (valor_taxa_selic % 1 && valor_taxa_selic > 0.00) {
     EnviarParaTela('atualizar.php', '#telaModalEditarSelic', { form_edit_taxa_selic: valor_taxa_selic } );
   }
@@ -178,7 +155,6 @@ function RotinaPAraAtualizaTaxaSelic(){
     fireNotif(message = 'Informe o valor da taxa da selic!', icon = 'error', delay = 5000)
   }
 }
-
 
 
 function EnviarParaTela(destino, tela, valor){
@@ -197,9 +173,6 @@ function EnviarParaTela(destino, tela, valor){
     }
 });
 }
-
-
-
 
 
 function recarrega(){

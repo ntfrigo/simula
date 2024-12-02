@@ -111,14 +111,37 @@ function CarregaTelaExcluir() {
     <!-- Modal Excluir -->';
 }
 
+function CarregaTelaSair() {
+
+  echo '<!-- Modal Sair -->
+  <div class="modal fade" id="telaModalSair" tabindex="-1" role="dialog" aria-labelledby="telaModalSairLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="telaModalSairLabel">Confirmar saida</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+              <h6 class="my-0 text-danger">Você tem certeza que deseja sair?</h6>
+
+              <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>                 
+                 <a href="logout.php" class="btn btn-lg btn-danger btn-block btn-sm">Sair</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>	
+
+
+    <!-- Modal Sair -->';
+}
+
 
 function CarregaItensLista($user_data, $valor_investir, $prazo_meses, $taxa_selic){
     $idmodelo = $user_data['idmodelo'];
     $retorno = CalcularRendimentos($user_data, $valor_investir, $prazo_meses, $taxa_selic);
 
-    $is_prefixado = $retorno['is_prefixado'];
-    $is_isento_ir = $retorno['is_isento_ir'];    
-    $taxa_aa = $retorno['taxa_aa'];
     $percent_cdi = $retorno['percent_cdi'];
     $valor_futuro = $retorno['valor_futuro'];
     $taxa_aplicada = $retorno['taxa_aplicada'];
@@ -126,8 +149,6 @@ function CarregaItensLista($user_data, $valor_investir, $prazo_meses, $taxa_seli
     $valor_ir = $retorno['valor_ir'];
     $lucro_liquido = $retorno['lucro_liquido'];
     $total_liquido = $retorno['total_liquido'];
-    $status_ativo = $retorno['status_ativo'];
-    $status_isento = $retorno['status_isento'];
 
     echo "<tr>";
     echo "<td>".$user_data['descricao']."</td>";
@@ -139,7 +160,6 @@ function CarregaItensLista($user_data, $valor_investir, $prazo_meses, $taxa_seli
     echo "<td>".number_format((float)$valor_ir, 2)."</td>";    
     echo "<td>".number_format((float)$lucro_liquido, 2)."</td>";    
     echo "<td>".number_format((float)$total_liquido, 2)."</td>"; 
-    
 
     echo '<td>                
     <button class="btn btn-primary  btn-sm" data-toggle="modal" data-target="#telaModalEditar" data-id="'.$idmodelo.'" >Editar</button>		  			
@@ -181,7 +201,5 @@ function CarregaTelaEditarSelic($taxa_selic) {
 
     <!-- Modal Editar Selic -->';	
 }
-
-
 
 ?>

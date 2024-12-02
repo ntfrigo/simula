@@ -6,10 +6,11 @@ try {
     $id = $_POST['form_edit_idmodelo'];
     $descricao = $_POST['form_edit_descricao'];
     $isento_ir = $_POST['form_edit_isento_ir'];
-    $ativo = $_POST['form_edit_ativo'];
+    $ativo = $_POST['form_edit_ativo'];    
+    $prefixado = $_POST['form_edit_prefixado'];
 
     $campoVisivel = "";
-    if($_POST['form_edit_prefixado'] == "S")
+    if($prefixado == "S")
     { 
         $taxa_aa = floatval($_POST['form_edit_taxa_aa']);
         $campoVisivel = "taxa_aa=$taxa_aa";
